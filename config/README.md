@@ -1,1 +1,1 @@
-Place configuration files in this directory.
+Place configuration my files in this directory.
