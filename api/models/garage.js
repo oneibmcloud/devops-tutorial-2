@@ -46,6 +46,5 @@ var GARAGES = [{
   name: 'Main door home',
   lastUpdated: '2016-07-10T17:48:00',
   desiredState: 'open',
-  status: 'closed',
-}, 
+  status: 'closed', 
 }];
