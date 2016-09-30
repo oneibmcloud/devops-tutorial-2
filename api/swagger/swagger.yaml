@@ -65,6 +65,51 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /garages:
+    # binds app logic to a route (api/controllers/applications.js)
+    x-swagger-router-controller: garages
+    get:
+      description: Returns a list of garages to the caller
+      # used as the method name of the controller inside garages.js
+      operationId: garages
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              # a pointer to a definition
+              $ref: "#/definitions/Garage"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /garages/{garageId}:
+    # Use the house address as the garageId
+    # binds app logic to a route (api/controllers/garages.js)
+    x-swagger-router-controller: garages
+    get:
+      description: Returns a single garage configuration to the caller
+      # used as the method name of the controller inside garages.js
+      operationId: garages
+      parameters:
+        - name: garageId
+          in: path
+          description: returns a garage object for the given id
+          # the path params are explicitly required by the spec
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successß
+          schema:
+            $ref: "#/definitions/Garage"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /hello:
     # binds app logic to a route (api/controllers/hello_world.js)
     x-swagger-router-controller: hello_world
@@ -97,6 +142,18 @@ definitions:
       name:
         type: string
       description:
+        type: string
+      status:
+        type: string
+  Garage:
+    properties:
+      garageId:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      desiredState:
         type: string
       status:
         type: string
